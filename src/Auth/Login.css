@@ -1,0 +1,151 @@
+/* ===== Page Wrapper ===== */
+.page-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f5f7fb, #eef2f7);
+  padding: 24px 12px;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+/* ===== Header ===== */
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.header h1 {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.header p {
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.header .phone {
+  font-size: 13px;
+  color: #4b5563;
+  margin-top: 4px;
+}
+
+/* ===== Login Wrapper ===== */
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/* ===== Card ===== */
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  background: #ffffff;
+  padding: 32px 28px;
+  border-radius: 16px;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.08),
+    0 6px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* ===== Card Title ===== */
+.login-card h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* ===== Form ===== */
+.login-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ===== Inputs ===== */
+.login-card input {
+  padding: 13px 14px;
+  font-size: 14px;
+  border-radius: 10px;
+  border: 1px solid #cfd6e1;
+  background: #fafafa;
+  transition: all 0.2s ease;
+}
+
+.login-card input:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: #3464e0;
+  box-shadow: 0 0 0 3px rgba(52, 100, 224, 0.15);
+}
+
+/* ===== Button ===== */
+.login-card button {
+  margin-top: 6px;
+  padding: 13px;
+  background: linear-gradient(135deg, #3464e0, #274dc9);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.login-card button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(52, 100, 224, 0.35);
+}
+
+.login-card button:disabled {
+  background: #9db3f2;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ===== Messages ===== */
+.success {
+  margin-top: 18px;
+  text-align: center;
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.error {
+  margin-top: 18px;
+  text-align: center;
+  color: #dc2626;
+  font-weight: 600;
+}
+
+/* ===== Switch Link ===== */
+.switch-link {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 14px;
+  color: #374151;
+}
+
+.switch-link a {
+  color: #3464e0;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.switch-link a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Desktop Enhancement ===== */
+@media (min-width: 640px) {
+  .header h1 {
+    font-size: 28px;
+  }
+
+  .login-card {
+    padding: 36px 32px;
+  }
+}
