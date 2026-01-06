@@ -1,0 +1,225 @@
+/* ==============================
+   Base Page
+================================ */
+.receipt-page {
+  width: 210mm;
+  min-height: 250mm;
+  margin: 0 auto;
+  padding: 10mm;
+  background: #fff;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: #000;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* ==============================
+   Header
+================================ */
+.receipt-header {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 14px;
+  align-items: center;
+  border-bottom: 2px solid #000;
+  padding-bottom: 12px;
+}
+
+.logo {
+  font-weight: 900;
+  font-size: 30px;
+  text-align: center;
+}
+
+.shop-info {
+  text-align: center;
+}
+
+.shop-info h1 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 2px;
+}
+
+.shop-info p {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* ==============================
+   Layout
+================================ */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.three-col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+
+/* ==============================
+   Info Box
+================================ */
+.box {
+  border: 1px solid #000;
+  padding: 8px 10px;
+  font-size: 13px;
+}
+
+.box h3 {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px dashed #000;
+  text-align: center;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.row span:first-child {
+  font-weight: 600;
+}
+
+/* ==============================
+   Inline Measurement List
+================================ */
+.inline-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  font-size: 13px;
+}
+
+.inline-list span {
+  border: 1px dashed #000;
+  padding: 4px 6px;
+  text-align: center;
+}
+
+/* ==============================
+   Cost Table
+================================ */
+.cost-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 14px;
+  font-size: 13px;
+}
+
+.cost-table th {
+  border: 1px solid #000;
+  padding: 6px;
+  background: #f5f5f5;
+  font-weight: 700;
+}
+
+.cost-table td {
+  border: 1px solid #000;
+  padding: 6px;
+}
+
+.cost-table .right {
+  text-align: right;
+  font-weight: 600;
+}
+
+/* ==============================
+   Note Section
+================================ */
+.note {
+  margin-top: 12px;
+  padding: 8px;
+  border: 1px dashed #000;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ==============================
+   Footer
+================================ */
+.receipt-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 36px;
+  font-size: 13px;
+}
+
+.receipt-footer div {
+  width: 45%;
+  text-align: center;
+  border-top: 1px solid #000;
+  padding-top: 4px;
+}
+
+/* ==============================
+   Actions (Screen only)
+================================ */
+.actions {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.actions button {
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: 1px solid #000;
+  background: #000;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ==============================
+   Print Rules
+================================ */
+@media print {
+  html, body {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: white;
+  }
+
+  .actions {
+    display: none;
+  }
+
+  .receipt-page {
+    box-shadow: none;
+    transform: scale(0.95); /* FINAL SAFETY SCALE */
+    transform-origin: top center;
+  }
+}
+
+
+@page {
+  size: A4;
+  margin: 0; /* remove browser default margin */
+}
+.receipt-page,
+.receipt-header,
+.two-col,
+.three-col,
+.box,
+.cost-table,
+.note,
+.receipt-footer {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}

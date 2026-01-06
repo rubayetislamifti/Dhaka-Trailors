@@ -2,12 +2,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./orderTable.css";
 
-// import "./Order.css";
 
 function Order() {
   const handlePrint = () => window.print();
 
-  // 🔹 Fake data (replace with API later)
   const orders = Array.from({ length: 42 }).map((_, i) => ({
     id: i + 1,
     orderNo: `DT-${1000 + i}`,
@@ -19,7 +17,7 @@ function Order() {
     status: "Pending",
   }));
 
-  // 🔹 Pagination state
+
   const ITEMS_PER_PAGE = 6;
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -47,7 +45,13 @@ function Order() {
 
       {/* Orders */}
       <div className="orders-card">
-        <h2>অর্ডার তালিকা</h2>
+        <div className="orders-header">
+          <h2>অর্ডার তালিকা</h2>
+
+          <Link to="/order/new" className="new-order-btn">
+            + New Order
+          </Link>
+        </div>
 
         <div className="orders-list">
           {currentOrders.map((o) => (
