@@ -1,15 +1,67 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import "./Login.css"; // reuse same design
+import { Link, useNavigate } from "react-router-dom";
+import "./Login.css";
+import { ENDPOINTS } from "../api/endpoint";
 
 export default function Register() {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
+  const [password_confirmation, setPasswordConfirmation] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [isError, setIsError] = useState(false);
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    alert("Register API will be added later");
+    setMessage("");
+    setIsError(false);
+    setLoading(true);
+
+    if (password !== password_confirmation) {
+      setIsError(true);
+      setMessage("পাসওয়ার্ড মিলছে না");
+      setLoading(false);
+      return;
+    }
+
+    try{
+      const response = await fetch(ENDPOINTS.REGISTER,{
+        method: "POST",
+        headers: {
+          "Content-Type":"application/json",
+        },
+        body: JSON.stringify({
+          name,
+          address, 
+          phone, 
+          password, 
+          password_confirmation
+        }),
+      });
+
+      const result = await response.json();
+
+      if(!result.status){
+        setIsError(true);
+        setMessage(result.error);
+        return;
+      }
+
+      setIsError(false);
+      setMessage(result.message);
+
+      setTimeout(()=>{
+        navigate("/")
+      },1500);
+    }catch(error){
+      setIsError(true);
+      setMessage("Network error. Please try again.");
+    }finally{
+      setLoading(false);
+    }
   };
 
   return (
@@ -36,10 +88,18 @@ export default function Register() {
             />
 
             <input
-              type="email"
-              placeholder="ইমেইল"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              placeholder="মোবাইল"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
+            />
+
+            <input
+              type="text"
+              placeholder="ঠিকানা"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
               required
             />
 
@@ -51,8 +111,24 @@ export default function Register() {
               required
             />
 
-            <button type="submit">রেজিস্টার</button>
+            <input
+              type="password"
+              placeholder="কনফার্ম পাসওয়ার্ড"
+              value={password_confirmation}
+              onChange={(e) => setPasswordConfirmation(e.target.value)}
+              required
+            />
+
+            <button type="submit" disabled={loading}>
+            {loading ? "রেজিস্টার হচ্ছে..." : "রেজিস্টার"}  
+            </button>
           </form>
+
+          {message && (
+            <p className={isError ? "error":"success"}>
+              {message}
+            </p>
+          )}
 
           <p className="switch-link">
             ইতিমধ্যে একাউন্ট আছে? <Link to="/login">লগইন করুন</Link>

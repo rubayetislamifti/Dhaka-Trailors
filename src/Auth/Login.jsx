@@ -4,7 +4,7 @@ import { ENDPOINTS } from "../api/endpoint";
 import { Link, Navigate } from "react-router-dom";
 
 function Login(){
-    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const [isError, setIsError] = useState(false);
@@ -30,7 +30,7 @@ function Login(){
                     "Content-Type":"application/json"
                 },
                 body: JSON.stringify({
-                    email, password
+                    phone, password
                 }),
             });
 
@@ -45,7 +45,7 @@ function Login(){
             setIsError(false);
             setMessage(data.message);
             setLoggedIn(true);
-            // localStorage.setItem("token",data.token);
+            localStorage.setItem("token",data.token);
         }catch(error){
             setIsError(true);
             setMessage("Network error. Please try again.");
@@ -73,10 +73,10 @@ function Login(){
 
         <form onSubmit={handleLogin}>
           <input
-            type="email"
-            placeholder="ইমেইল"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            placeholder="মোবাইল"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
             required
           />
 
